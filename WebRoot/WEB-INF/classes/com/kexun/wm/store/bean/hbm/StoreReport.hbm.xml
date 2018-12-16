@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.kexun.wm.store.bean">
+
+	<class name="StoreReport" table="StoreReport">
+		<!-- 映射主键 -->
+		<comment></comment>
+		<id name="ProductID" column="ProductID" type="int">
+			<generator class="identity" />
+		</id>
+
+		<!-- 映射基本属性 -->
+		<property name="storeClass" type="java.lang.String">
+			<column name="storeClass" length="255">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="collectCount" type="int">
+			<column name="collectCount">
+				<comment></comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>
+
+
+
+
+
+
+
+
+
+

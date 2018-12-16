@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd" >
+<struts>
+	<package name="system" namespace="/system" extends="struts-default">
+		<!-- 用户管理 -->
+		<action name="getImage" class="com.kexun.wm.system.action.SysUserAction"
+			method="getImage">
+		</action>
+		<action name="LoginSysUser" class="com.kexun.wm.system.action.SysUserAction"
+			method="LoginSysUser">
+			<result name="false">/jsp/first/login.jsp</result>
+			<result name="success">/jsp/first/index.jsp</result>
+		</action>
+		<action name="Login" class="com.kexun.wm.system.action.SysUserAction"
+			method="Login">
+			<result name="login">/jsp/first/login.jsp</result>
+			<result name="index">/jsp/first/index.jsp</result>
+		</action>
+		<action name="removeSuccess" class="com.kexun.wm.system.action.SysUserAction"
+			method="removeSySUserSession">
+			<result name="RemoveSuceess">/jsp/first/login.jsp</result>
+		</action>
+		<action name="getSysMenu" class="com.kexun.wm.system.action.SysUserAction"
+			method="getSysMenu">
+			<result name="left">/jsp/first/left.jsp</result>
+		</action>
+		<action name="querySysUser" class="com.kexun.wm.system.action.SysUserAction"
+			method="querySysUserList">
+			<result name="querysysUser">/jsp/system/querySysUser.jsp</result>
+		</action>
+		<action name="getSysUserById" class="com.kexun.wm.system.action.SysUserAction"
+			method="getSysUserById">
+			<result name="sysUserModify">/jsp/system/sysUserForm.jsp</result>
+			<result name="sysUserDetail">/jsp/system/sysUser.jsp</result>
+		</action>
+		<action name="initSysUser" class="com.kexun.wm.system.action.SysUserAction"
+			method="initSysUser">
+			<result name="querySysUser">/jsp/system/querySysUser.jsp</result>
+			<result name="sysUserForm">/jsp/system/sysUserForm.jsp</result>
+		</action>
+	 	<action name="editSysUser" class="com.kexun.wm.system.action.SysUserAction">
+			<result type="redirectAction">
+				<param name="actionName">findSysUser</param>
+				<param name="page">${page}</param>
+				<param name="queryname">${queryname}</param>
+			</result>
+			<result name="first">/jsp/first/first.jsp</result>
+			<result name="sysUserForm">/jsp/system/sysUserForm.jsp</result>
+		</action>
+		<action name="findSysUser" class="com.kexun.wm.system.action.SysUserAction"
+			method="findSysUser">
+			<result>/jsp/system/querySysUser.jsp</result>
+ 		</action>
+		<action name="deleteSysUser" class="com.kexun.wm.system.action.SysUserAction"
+			method="deleteSysUser">
+			<result type="redirectAction">
+				<param name="actionName">findSysUser</param>
+				<param name="page">${page}</param>
+				<param name="queryname">${queryname}</param>
+			</result>
+		</action>
+		
+		<action name="queryUser" class="com.kexun.wm.system.action.SysUserAction"
+			method="queryUser">
+			 <result name="modifyPsw">/jsp/system/modifyPsw.jsp</result>
+		</action>
+		
+		<action name="testDiv" class="com.kexun.wm.system.action.SysUserAction"
+			method="testDiv">
+			 <result name="test1">/jsp/store/test1.jsp</result>
+		</action>
+		
+		<!-- 菜单管理 -->
+		<action name="initSysMenu" class="com.kexun.wm.system.action.SysMenuAction"
+			method="initSysMenu">
+			<result name="querySysMenu">/jsp/system/querySysMenu.jsp</result>
+			<result name="sysMenuForm">/jsp/system/sysMenuForm.jsp</result>
+		</action>
+		<action name="findSysMenu" class="com.kexun.wm.system.action.SysMenuAction"
+			method="findSysMenu">
+			<result>/jsp/system/querySysMenu.jsp</result>
+		</action>
+		<action name="editSysMenu" class="com.kexun.wm.system.action.SysMenuAction">
+			<result type="redirectAction">
+				<param name="actionName">findSysMenu</param>
+				<param name="page">${page}</param>
+				<param name="pageSize">${pageSize}</param>
+				<param name="sysMenuname">${sysMenuname}</param>
+			</result>
+		</action>
+		<action name="getSysMenuById" class="com.kexun.wm.system.action.SysMenuAction"
+			method="getSysMenuById">
+			<result name="sysMenuModify">/jsp/system/sysMenuForm.jsp</result>
+			<result name="sysMenuDtl">/jsp/system/sysMenu.jsp</result>
+		</action>
+		<action name="deleteSysMenu" class="com.kexun.wm.system.action.SysMenuAction"
+			method="deleteSysMenu">
+			<result type="redirectAction">
+				<param name="actionName">findSysMenu</param>
+				<param name="page">${page}</param>
+				<param name="pageSize">${pageSize}</param>
+				<param name="sysMenuname">${sysMenuname}</param>
+			</result>
+		</action>
+
+		<!-- 角色管理 -->
+		<action name="initSysRole" class="com.kexun.wm.system.action.SysRoleAction"
+			method="initSysRole">
+			<result name="querySysRole">/jsp/system/querySysRole.jsp</result>
+			<result name="sysRoleForm">/jsp/system/sysRoleForm.jsp</result>
+		</action>
+		<action name="editSysRole" class="com.kexun.wm.system.action.SysRoleAction">
+			<result type="redirectAction">findSysRole</result>
+		</action>
+		<action name="addSysRole" class="com.kexun.wm.system.action.SysRoleAction"
+			method="addSysRole">
+			<result name="sysRole">/jsp/system/sysRole.jsp</result>
+		</action>
+		<action name="modifySysMenu" class="com.kexun.wm.system.action.SysRoleAction"
+			method="modifySysMenu">
+			<result name="sysRole">/jsp/system/sysRole.jsp</result>
+		</action>
+		<action name="findSysRole" class="com.kexun.wm.system.action.SysRoleAction"
+			method="findSysRole">
+			<result>/jsp/system/querySysRole.jsp</result>
+		</action>
+		<action name="lastSysRolePage" class="com.kexun.wm.system.action.SysRoleAction"
+			method="lastPage">
+			<result name="querySysRole">/jsp/system/querySysRole.jsp</result>
+		</action>
+		<action name="nextSysRolePage" class="com.kexun.wm.system.action.SysRoleAction"
+			method="nextPage">
+			<result name="querySysRole">/jsp/system/querySysRole.jsp</result>
+		</action>
+		<action name="getSysRoleById" class="com.kexun.wm.system.action.SysRoleAction"
+			method="getSysRoleById">
+			<result name="sysRoleModify">/jsp/system/sysRoleModify.jsp</result>
+			<result name="sysMenuDtl">/jsp/system/sysRole.jsp</result>
+		</action>
+		<action name="deleteSysRole" class="com.kexun.wm.system.action.SysRoleAction"
+			method="deleteSysRole">
+
+			<result type="redirectAction">
+				<param name="actionName">findSysRole</param>
+				<param name="pageSize">${pageSize}</param>
+				<param name="pageNo">${pageNo}</param>
+				<param name="sysRolename">${sysRolename}</param>
+			</result>
+		</action>
+		<!-- 登录信息 -->
+		<action name="queryLoginLog" class="com.kexun.wm.system.action.LoginLogAction" method="queryLoginLog">
+			<result>/jsp/system/queryLoginLog.jsp</result>
+		</action>
+	</package>
+</struts>
+

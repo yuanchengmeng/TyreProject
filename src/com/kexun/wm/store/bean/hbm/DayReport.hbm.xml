@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.kexun.wm.store.bean">
+
+	<class name="DayReport" table="dayReport">
+		<!-- 映射主键 -->
+		<comment></comment>
+		<id name="reportDay" column="reportDay" type="string">
+			<generator class="identity" />
+		</id>
+
+		<!-- 映射基本属性 -->
+		<property name="sum0" type="int">
+			<column name="sum0">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="sum1" type="int">
+			<column name="sum1">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="sum2" type="int">
+			<column name="sum2">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="sum3" type="int">
+			<column name="sum3">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="sum4" type="int">
+			<column name="sum4">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="sum5" type="int">
+			<column name="sum5">
+				<comment></comment>
+			</column>
+		</property>
+<!-- 	<property name="sum6" type="int">
+			<column name="sum6">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="sum7" type="int">
+			<column name="sum7">
+				<comment></comment>
+			</column>
+		</property>-->
+ 	</class>
+</hibernate-mapping>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.kexun.wm.system.bean">
+
+	<class name="PageSize" table="pagesize">
+		<!-- 映射主键 -->
+		<comment>页面数据显示条数</comment>
+		<id name="id" column="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<!-- 映射基本属性 -->
+		<property name="psize" type="java.lang.Integer">
+		 <column name="psize" length="11"></column>
+		</property>
+	</class>
+</hibernate-mapping>
+
+
+
+
+
+
+
+
+
+

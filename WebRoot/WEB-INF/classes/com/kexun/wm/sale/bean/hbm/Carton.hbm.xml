@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.kexun.wm.sale.bean">
+
+	<class name="Carton" table="carton">
+		<!-- 映射主键 -->
+		<comment>箱号信息表</comment>
+		<id name="id" column="id" type="integer">
+			<generator class="identity" />
+		</id>
+
+		<!-- 映射基本属性 -->
+		<property name="cartonNo" type="java.lang.String">
+			<column name="cartonNo" length="50">
+				<comment>箱号</comment>
+			</column>
+		</property>
+		<property name="orderId" type="java.lang.Integer">
+			<column name="Order_ID">
+				<comment></comment>
+			</column>
+		</property>
+		<many-to-one name="vehicle"  lazy="false" class="Vehicle">
+			<column name="vehicle_id" length="11"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>
+
+
+
+
+
+
+
+
+
+

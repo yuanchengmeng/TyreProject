@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.kexun.wm.system.bean">
+
+	<class name="SysMenu" table="sys_menu">
+		<!-- 映射主键 -->
+		<comment>菜单表</comment>
+		<id name="id" column="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<!-- 映射基本属性 -->
+		<property name="name" type="java.lang.String">
+			<column name="name" length="100">
+				<comment>名称</comment>
+			</column>
+		</property>
+
+		<property name="page_url" type="java.lang.String">
+			<column name="page_url" length="200">
+				<comment>路径</comment>
+			</column>
+		</property>
+		<property name="parent_menu_id" type="java.lang.Integer">
+			<column name="parent_menu_id" length="11">
+				<comment>父菜单</comment>
+			</column>
+		</property>
+		<property name="flag" type="java.lang.String">
+			<column name="flag" length="50">
+				<comment>标志</comment>
+			</column>
+		</property>
+		
+		<set name="sysRoles" lazy="false" table="sys_role_menu" order-by ="role_id asc" >
+			<key column="menu_id" />
+			<many-to-many column="role_id" class="com.kexun.wm.system.bean.SysRole" />
+		</set>
+	</class>
+</hibernate-mapping>
+
