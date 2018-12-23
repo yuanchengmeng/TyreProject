@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.kexun.wm.store.bean">
+
+	<class name="StandardStatisVo" table="standard_statis">
+		<!-- 映射主键 -->
+		<comment></comment>
+		<id name="id" column="id" type="integer">
+			<generator class="identity" />
+		</id>
+
+		<!-- 映射基本属性 -->
+		<property name="storeType" type="java.lang.String">
+			<column name="storeType" length="255">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="classes" type="java.lang.String">
+			<column name="classes" length="255">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="person" type="java.lang.String">
+			<column name="person" length="255">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="productID" type="integer">
+			<column name="productID">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="amount" type="integer">
+			<column name="amount">
+				<comment></comment>
+			</column>
+		</property>
+		 
+ 	</class>
+</hibernate-mapping>
+
+
+
+
+
+
+
+
+
+

@@ -117,6 +117,7 @@ public class CollectStoreAction {
 		return "queryCollectStore";
 	}
 
+	
 
 	public Store getStore() {
 		return store;

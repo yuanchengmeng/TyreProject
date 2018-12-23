@@ -76,7 +76,7 @@
 
 <body>
 	${success}
-	<s:form action="queryDayReport" namespace="/store">
+	<s:form action="queryStandardStatis" namespace="/store">
 		<s:hidden name="flag" value="1" />
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tbody>
@@ -97,7 +97,7 @@
 														</td>
 														<td
 															background="<%=request.getContextPath()%>/jsp/images/xxnr_10.jpg"></br>&nbsp;<span
-															class="dqwz"><b>当前位置：</b> 库存数量统计</span></td>
+															class="dqwz"><b>当前位置：</b> 规格统计</span></td>
 														<td width="20" height="42"><img
 															src="<%=request.getContextPath()%>/jsp/images/xxnr_18.jpg"
 															width="20" height="42"></td>
@@ -111,15 +111,19 @@
 															<table width="100%" border="0" cellpadding="0"
 																cellspacing="1">
 																<tr class="query_two">
-																	<td width="50%">&nbsp;入库日期：<input type="text"
-																		name="dayReport.timeStart" id="timeStart"
+																	<td width="50%">&nbsp;日期：<input type="text"
+																		name="params.timeStart" id="timeStart"
 																		onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"
 																		class="Wdate" style="width:150px"
-																		value="${dayReport.timeStart}" /> 至 <input type="text"
-																		name="dayReport.timeEnd" id="timeEnd"
+																		value="${params.timeStart}" /> 至 <input type="text"
+																		name="params.timeEnd" id="timeEnd"
 																		onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"
 																		class="Wdate" style="width:150px"
-																		value="${dayReport.timeEnd}" />
+																		value="${params.timeEnd}" />
+																	</td>
+																	<td>&nbsp;操作人：<input type="text"
+																		name="params.person" id="person"
+																		value="${params.person}" />
 																	</td>
 																	<td><input style="color:white"
 																		type="button" onclick="IsNullDay();" value="查询" class="input_submit">&nbsp;&nbsp;
@@ -140,17 +144,16 @@
 																			</div>
 																		</th>
 																		<th style="text-align: center;color:black">序号</th>
-																		<th style="color:black">入库日期</th>
-																		<th style="color:black">总数量</th>
-																		<th style="color:black">甲班</th>
-																		<th style="color:black">乙班</th>
-																		<th style="color:black">丙班</th>
-																		<th style="color:black">出库组</th>
-																		<th style="color:black">保管组</th>
+																		<th style="color:black">操作</th>
+																		<th style="color:black">规格</th>
+																		<th style="color:black">数量</th>
+																		<th style="color:black">姓名</th>
+																		<th style="color:black">工号</th>
+																		<th style="color:black">班次</th>
 																	</tr>
 																</thead>
 																<tbody>
-																	<s:iterator value="dayReportList" var="dayReport"
+																	<s:iterator value="standardList" var="standard"
 																		status="status">
 																		<tr class="even">
 																			<td style="width:30px;text-align:center"><input
@@ -161,13 +164,12 @@
 																			<td style="text-align: center;"><s:property
 																					value="#status.index+1+(pageNo-1)*pageSize" />
 																			</td>
-																			<td><s:property value="#dayReport.getReportDay()" /></td>
-																			<td><s:property value="#dayReport.getSum0()" /></td>
-																			<td><s:property value="#dayReport.getSum1()" /></td>
-																			<td><s:property value="#dayReport.getSum2()" /></td>
-																			<td><s:property value="#dayReport.getSum3()" /></td>
-																			<td><s:property value="#dayReport.getSum4()" /></td>
-																			<td><s:property value="#dayReport.getSum5()" /></td>
+																			<td><s:property value="#standard.getStoreType()" /></td>
+																			<td><s:property value="#standard.getProduct().getFName()" /></td>
+																			<td><s:property value="#standard.getAmount()" /></td>
+																			<td><s:property value="#standard.getPerson()" /></td>
+																			<td><s:property value="#standard.getSysUser().getJobNo()" /></td>
+																			<td><s:property value="#standard.getClasses()" /></td>
 																		</tr>
 																	</s:iterator>
 																</tbody>

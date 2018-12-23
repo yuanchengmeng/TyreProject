@@ -2,7 +2,11 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd" >
 <struts>
 	<package name="store" namespace="/store" extends="struts-default">
-		
+		<!-- 规格统计 -->
+		<action name="queryStandardStatis" class="com.kexun.wm.store.action.StatisManageAction"
+			method="queryStandardStatis">
+			<result name="queryStandardStatis">/jsp/store/queryStandardStatis.jsp</result>
+		</action>
 		<!-- 手持用户的后台数据操作 -->
 		<action name="queryHUser" class="com.kexun.wm.store.action.HUserAction"
 			method="queryHUser">

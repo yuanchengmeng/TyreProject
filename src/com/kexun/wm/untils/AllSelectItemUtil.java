@@ -205,6 +205,17 @@ public class AllSelectItemUtil {
 		String result = sdf.format(rightNow);
 		return result;
 	}
+	
+	public static String getDateByDay(int day) throws Exception {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date rightNow = new Date();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(rightNow);
+		calendar.add(Calendar.DAY_OF_MONTH, day);
+		rightNow = calendar.getTime();
+		String result = sdf.format(rightNow);
+		return result;
+	}
 
 	public static String defaultTime(String f) throws Exception {
 		SimpleDateFormat sdf = new SimpleDateFormat(f);

@@ -100,7 +100,7 @@
 	<mapping resource="com/kexun/wm/sale/bean/hbm/Vehicle.hbm.xml" />
 	<mapping resource="com/kexun/wm/sale/bean/hbm/Carton.hbm.xml" />
 	<mapping resource="com/kexun/wm/store/bean/hbm/StoreReport.hbm.xml" />
-	<mapping resource="com/kexun/wm/store/bean/hbm/DayReport.hbm.xml" />
+	<mapping resource="com/kexun/wm/store/bean/hbm/StandardStatisVo.hbm.xml" />
 
 </session-factory>
 </hibernate-configuration>
