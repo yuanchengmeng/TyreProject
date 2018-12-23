@@ -22,7 +22,7 @@ public class StatisManageDaoImpl implements StatisManageDao {
 			session = sf.openSession();
 			int beginPos = (pageNo - 1) * pageSize;
 			
-			String sql = "select ROW_NUMBER() OVER(ORDER BY GETDATE()) id,1 storeType,t1.InClass classes,t1.InMan person,t1.ProductID productID,COUNT(1) amount from hand_store t1 where t1.StoreState in ('已出库','在库') ";
+			String sql = "select 1 storeType,t1.InClass classes,t1.InMan person,t1.ProductID productID,COUNT(1) amount from hand_store t1 where t1.StoreState in ('已出库','在库') ";
 			
 			if (null != params && StringUtils.isNotBlank(params.getTimeStart())) {
 				sql += " and t1.InTime >'"+params.getTimeStart()+"'";
@@ -34,7 +34,7 @@ public class StatisManageDaoImpl implements StatisManageDao {
 				sql += " and t1.InMan like '%"+params.getPerson()+"%'";
 			}		
 			 
-			sql += "group by t1.InClass,t1.InMan,t1.ProductID union all select ROW_NUMBER() OVER(ORDER BY GETDATE()) id,2 storeType,t2.OutClass classes,t2.OutMan person,t2.ProductID,COUNT(1) amount from hand_store t2 where t2.StoreState ='已出库' ";
+			sql += "group by t1.InClass,t1.InMan,t1.ProductID union all select 2 storeType,t2.OutClass classes,t2.OutMan person,t2.ProductID,COUNT(1) amount from hand_store t2 where t2.StoreState ='已出库' ";
 			
 			if (null != params && StringUtils.isNotBlank(params.getTimeStart())) {
 				sql += " and t2.OutTime >'"+params.getTimeStart()+"'";

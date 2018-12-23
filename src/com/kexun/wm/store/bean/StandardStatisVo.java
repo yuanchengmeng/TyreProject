@@ -1,5 +1,7 @@
 package com.kexun.wm.store.bean;
 
+import java.io.Serializable;
+
 import com.kexun.wm.sale.bean.Product;
 import com.kexun.wm.system.bean.SysUser;
 
@@ -8,8 +10,7 @@ import com.kexun.wm.system.bean.SysUser;
  * @author Administrator
  *
  */
-public class StandardStatisVo {
-	private int id;//库存类型
+public class StandardStatisVo implements Serializable{
 	private String storeType;//库存类型
 	private String classes;//班次
     private String person;//操作员
@@ -18,12 +19,6 @@ public class StandardStatisVo {
 	private Product product;//规格
 	private Integer amount;//数量
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getStoreType() {
 		return storeType;
 	}
