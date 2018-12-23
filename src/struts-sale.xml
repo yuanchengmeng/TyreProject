@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd" >
+<struts>
+	<package name="sale" namespace="/sale" extends="struts-default">
+		
+		<!-- 手持用户的后台数据操作 -->
+		<action name="querySaleAfter" class="com.kexun.wm.sale.action.SaleAfterAction"
+			method="querySaleAfter">
+			<result name="querySaleAfter">/jsp/sale/querySaleAfter.jsp</result>
+		</action>
+		<action name="lastSaleAfterPage" class="com.kexun.wm.sale.action.SaleAfterAction"
+			method="lastPage">
+			<result name="querySaleAfter">/jsp/sale/querySaleAfter.jsp</result>
+		</action>
+		<action name="nextSaleAfterPage" class="com.kexun.wm.sale.action.SaleAfterAction"
+			method="nextPage">
+			<result name="querySaleAfter">/jsp/sale/querySaleAfter.jsp</result>
+		</action>
+		<action name="getSaleAfterItem" class="com.kexun.wm.sale.action.SaleAfterAction"
+			method="getSaleAfterItem">
+			<result name="saleAfterForm">/jsp/sale/saleAfterForm.jsp</result>
+			<result name="false">/jsp/sale/500.jsp</result>
+		</action>
+		<action name="addSaleAfter" class="com.kexun.wm.sale.action.SaleAfterAction"
+			method="addSaleAfter">
+			<result name="saleAfter">/jsp/sale/saleAfter.jsp</result>
+			<result name="false">/jsp/sale/500.jsp</result>
+			<result name="querySaleAfter">/jsp/sale/querySaleAfter.jsp</result>
+		</action>
+		<action name="getSaleAfterById" class="com.kexun.wm.sale.action.SaleAfterAction"
+			method="getSaleAfterById">
+			<result name="saleAfter">/jsp/sale/saleAfter.jsp</result>
+			<result name="modify">/jsp/sale/saleAfterModify.jsp</result>
+		</action>
+		<action name="modifySaleAfter" class="com.kexun.wm.sale.action.SaleAfterAction"
+			method="modifySaleAfter">
+			<result name="saleAfter">/jsp/sale/saleAfter.jsp</result>
+			<result name="false">/jsp/sale/500.jsp</result>
+		</action>
+		<action name="deleteSaleAfter" class="com.kexun.wm.sale.action.SaleAfterAction"
+			method="deleteSaleAfter">
+			<result name="delete">/jsp/sale/querySaleAfter.jsp</result>
+			<result name="false">/jsp/sale/500.jsp</result>
+		</action>
+		<!-- 金蝶的后台数据操作 -->
+		<action name="querySeOrder" class="com.kexun.wm.sale.action.SeOrderAction"
+			method="querySeOrder">
+			<result name="querySeOrder">/jsp/sale/querySeOrder.jsp</result>
+		</action>
+		<action name="lastSeOrderPage" class="com.kexun.wm.sale.action.SeOrderAction"
+			method="lastPage">
+			<result name="querySeOrder">/jsp/sale/querySeOrder.jsp</result>
+		</action>
+		<action name="nextSeOrderPage" class="com.kexun.wm.sale.action.SeOrderAction"
+			method="nextPage">
+			<result name="querySeOrder">/jsp/sale/querySeOrder.jsp</result>
+		</action>
+		<action name="getSeOrderEntryById" class="com.kexun.wm.sale.action.SeOrderAction"
+			method="getSeOrderEntryById">
+			<result name="querySeOrderEntry">/jsp/sale/querySeOrderEntry.jsp</result>
+		</action>
+		<action name="getVehicleForm" class="com.kexun.wm.sale.action.SeOrderAction"
+			method="getVehicleForm">
+			<result name="vehicleForm">/jsp/sale/vehicleForm.jsp</result>
+		</action>
+		<action name="addVehicle" class="com.kexun.wm.sale.action.SeOrderAction"
+			method="addVehicle">
+			<result name="vehicleForm">/jsp/sale/vehicleForm.jsp</result>
+		</action>
+		<!-- 箱号表 -->
+		<action name="getCartonForm" class="com.kexun.wm.sale.action.SeOrderAction"
+			method="getCartonForm">
+			<result name="cartonForm">/jsp/sale/cartonForm.jsp</result>
+		</action>
+		<action name="addCarton" class="com.kexun.wm.sale.action.SeOrderAction"
+			method="addCarton">
+			<result name="cartonForm">/jsp/sale/cartonForm.jsp</result>
+		</action>
+		
+		<!-- 规格代码对照表 -->
+		<action name="queryCodeTrans" class="com.kexun.wm.sale.action.CodeTransAction"
+			method="queryCodeTrans">
+			<result name="queryStandard">/jsp/sale/queryStandard.jsp</result>
+			<result name="queryBrand">/jsp/sale/queryBrand.jsp</result>
+			<result name="queryCodeTrans">/jsp/sale/queryCodeTrans.jsp</result>
+		</action>
+		<action name="lastPage" class="com.kexun.wm.sale.action.CodeTransAction"
+			method="lastPage">
+			<result name="queryStandard">/jsp/sale/queryStandard.jsp</result>
+			<result name="queryBrand">/jsp/sale/queryBrand.jsp</result>
+			<result name="queryCodeTrans">/jsp/sale/queryCodeTrans.jsp</result>
+		</action>
+		<action name="nextPage" class="com.kexun.wm.sale.action.CodeTransAction"
+			method="nextPage">
+			<result name="queryStandard">/jsp/sale/queryStandard.jsp</result>
+			<result name="queryBrand">/jsp/sale/queryBrand.jsp</result>
+			<result name="queryCodeTrans">/jsp/sale/queryCodeTrans.jsp</result>
+		</action>
+		
+		<!-- 品牌表 -->
+		<action name="getBrandItem" class="com.kexun.wm.sale.action.BrandAction"
+			method="getBrandItem">
+			<result name="brandForm">/jsp/sale/brandForm.jsp</result>
+		</action>
+		<action name="addBrand" class="com.kexun.wm.sale.action.BrandAction"
+			method="addBrand">
+ 			<result name="false">/jsp/system/500.jsp</result>
+ 			<result name="501">/jsp/system/501.jsp</result>
+			<result name="queryBrand">/jsp/sale/queryBrand.jsp</result>
+		</action>
+		<action name="getBrandById" class="com.kexun.wm.sale.action.BrandAction"
+			method="getBrandById">
+			<result name="modify">/jsp/sale/modifyBrand.jsp</result>
+ 		</action>
+		<action name="modifyBrand" class="com.kexun.wm.sale.action.BrandAction"
+			method="modifyBrand">
+			<result name="queryBrand">/jsp/sale/queryBrand.jsp</result>
+			<result name="false">/jsp/system/500.jsp</result>
+			<result name="501">/jsp/system/501.jsp</result>
+		</action>
+		<action name="deleteBrand" class="com.kexun.wm.sale.action.BrandAction"
+			method="deleteBrand">
+			<result name="delete">/jsp/sale/queryBrand.jsp</result>
+			<result name="false">/jsp/system/500.jsp</result>
+		</action>
+		<action name="queryBrand" class="com.kexun.wm.sale.action.BrandAction"
+			method="queryBrand">
+			<result name="queryBrand">/jsp/sale/queryBrand.jsp</result>
+		</action>
+		<action name="lastBrandPage" class="com.kexun.wm.sale.action.BrandAction"
+			method="lastPage">
+			<result name="queryBrand">/jsp/sale/queryBrand.jsp</result>
+		</action>
+		<action name="nextBrandPage" class="com.kexun.wm.sale.action.BrandAction"
+			method="nextPage">
+			<result name="queryBrand">/jsp/sale/queryBrand.jsp</result>
+		</action>
+			<!-- 规格表 -->
+		<action name="getStandardItem" class="com.kexun.wm.sale.action.StandardAction"
+			method="getStandardItem">
+			<result name="standardForm">/jsp/sale/standardForm.jsp</result>
+		</action>
+		<action name="addStandard" class="com.kexun.wm.sale.action.StandardAction"
+			method="addStandard">
+ 			<result name="false">/jsp/system/500.jsp</result>
+ 			<result name="501">/jsp/system/501.jsp</result>
+			<result name="queryStandard">/jsp/sale/queryStandard.jsp</result>
+		</action>
+		<action name="getStandardById" class="com.kexun.wm.sale.action.StandardAction"
+			method="getStandardById">
+			<result name="modify">/jsp/sale/modifyStandard.jsp</result>
+ 		</action>
+		<action name="modifyStandard" class="com.kexun.wm.sale.action.StandardAction"
+			method="modifyStandard">
+			<result name="queryStandard">/jsp/sale/queryStandard.jsp</result>
+			<result name="false">/jsp/system/500.jsp</result>
+			<result name="501">/jsp/system/501.jsp</result>
+		</action>
+		<action name="deleteStandard" class="com.kexun.wm.sale.action.StandardAction"
+			method="deleteStandard">
+			<result name="delete">/jsp/sale/queryStandard.jsp</result>
+			<result name="false">/jsp/system/500.jsp</result>
+		</action>
+		<action name="queryStandard" class="com.kexun.wm.sale.action.StandardAction"
+			method="queryStandard">
+			<result name="queryStandard">/jsp/sale/queryStandard.jsp</result>
+		</action>
+		<action name="lastStandardPage" class="com.kexun.wm.sale.action.StandardAction"
+			method="lastPage">
+			<result name="queryStandard">/jsp/sale/queryStandard.jsp</result>
+		</action>
+		<action name="nextStandardPage" class="com.kexun.wm.sale.action.StandardAction"
+			method="nextPage">
+			<result name="queryStandard">/jsp/sale/queryStandard.jsp</result>
+		</action>
+	</package>
+</struts>
+

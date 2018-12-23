@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.kexun.wm.store.bean">
+
+	<class name="Store" table="hand_store">
+		<!-- 映射主键 -->
+		<comment>出入库数据表</comment>
+		<id name="id" column="ID" type="integer">
+			<generator class="identity" />
+		</id>
+		<!-- 映射基本属性 -->
+		<property name="storeState" type="java.lang.String">
+			<column name="StoreState" length="50">
+				<comment>状态</comment>
+			</column>
+		</property>
+		<property name="barcode" type="java.lang.String">
+			<column name="Barcode" length="50">
+				<comment>条形码</comment>
+			</column>
+		</property>
+		<property name="boxCode" type="java.lang.String">
+			<column name="boxcode" length="50">
+				<comment>笼框条形码</comment>
+			</column>
+		</property>
+	    <property name="detailId" type="java.lang.Integer">
+			<column name="DetailID">
+				<comment>明细表id</comment>
+			</column>
+		</property>
+		<property name="inTime" type="java.util.Date">
+			<column name="InTime">
+				<comment>入库时间</comment>
+			</column>
+		</property>
+		<property name="inMan" type="java.lang.String">
+			<column name="InMan" length="50">
+				<comment>入库人</comment>
+			</column>
+		</property>
+		<property name="inClass" type="java.lang.String">
+			<column name="InClass" length="50">
+				<comment>班组</comment>
+			</column>
+		</property>
+		<property name="inDate" type="java.lang.String">
+			<column name="InDate" length="50">
+				<comment>作业日期</comment>
+			</column>
+		</property>
+		
+		<property name="outTime" type="java.util.Date">
+			<column name="OutTime">
+				<comment>出库时间</comment>
+			</column>
+		</property>
+		<property name="outMan" type="java.lang.String">
+			<column name="OutMan" length="50">
+				<comment>出库人</comment>
+			</column>
+		</property>
+		<property name="outClass" type="java.lang.String">
+			<column name="OutClass" length="50">
+				<comment>出库班组</comment>
+			</column>
+		</property>
+		<property name="outDate" type="java.lang.String">
+			<column name="OutDate" length="50">
+				<comment>出库日期</comment>
+			</column>
+		</property>
+		<property name="orderId" type="java.lang.Integer">
+			<column name="OrderID">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="productID" type="java.lang.Integer">
+			<column name="ProductID">
+				<comment></comment>
+			</column>
+		</property>
+		
+		<property name="inCode" type="java.lang.Integer">
+			<column name="incode">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="inNo" type="java.lang.Integer">
+			<column name="inno">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="outCode" type="java.lang.Integer">
+			<column name="outcode">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="outNo" type="java.lang.Integer">
+			<column name="outno">
+				<comment></comment>
+			</column>
+		</property>
+		
+		<property name="oldrkTime" type="java.util.Date">
+			<column name="oldrk_time">
+				<comment>取消入库后，再次入库时，保存第一次入库时间</comment>
+			</column>
+		</property>
+		<property name="oldrkClass" type="java.lang.String">
+			<column name="oldrk_class" length="10">
+				<comment>取消入库后，再次入库时，保存第一次入库班次</comment>
+			</column>
+		</property>
+		<property name="oldrkMan" type="java.lang.String">
+			<column name="oldrk_man" length="10">
+				<comment>取消入库后，再次入库时，保存第一次入库人</comment>
+			</column>
+		</property>
+		<property name="k3Time" type="java.util.Date">
+			<column name="k3_time">
+				<comment>上传K3时间</comment>
+			</column>
+		</property>
+		<property name="qxrkTime" type="java.util.Date">
+			<column name="qxrk_time">
+				<comment>取消入库时间</comment>
+			</column>
+		</property>    
+		<property name="qxrkClass" type="java.lang.String">
+			<column name="qxrk_class" length="10">
+				<comment>取消入库班次</comment>
+			</column>
+		</property>
+		<property name="qxrkMan" type="java.lang.String">
+			<column name="qxrk_man" length="10">
+				<comment>取消入库人</comment>
+			</column>
+		</property>
+		<property name="frkTime" type="java.util.Date">
+			<column name="frk_time">
+				<comment>取消出库（反入库）时间</comment>
+			</column>
+		</property>    
+		<property name="frkClass" type="java.lang.String">
+			<column name="frk_class" length="10">
+				<comment>取消出库（反入库）班次</comment>
+			</column>
+		</property>
+		<property name="frkMan" type="java.lang.String">
+			<column name="frk_man" length="10">
+				<comment>取消出库（反入库）人</comment>
+			</column>
+		</property>
+		<property name="nofrkBoxcode" type="java.lang.String">
+			<column name="nofrk_boxcode" length="50">
+				<comment>取消出库（反入库）后，记录第一次入库的笼框号</comment>
+			</column>
+		</property>
+		<property name="changeboxTime" type="java.util.Date">
+			<column name="changebox_time">
+				<comment>修改笼框号时间</comment>
+			</column>
+		</property>    
+		<property name="changeboxClass" type="java.lang.String">
+			<column name="changebox_class" length="10">
+				<comment>修改笼框号班次</comment>
+			</column>
+		</property>
+		<property name="changeboxMan" type="java.lang.String">
+			<column name="changebox_man" length="10">
+				<comment>修改笼框号人</comment>
+			</column>
+		</property>
+		<property name="nochangeBoxcode" type="java.lang.String">
+			<column name="nochange_boxcode" length="50">
+				<comment>修改笼框号前的笼框号</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>
+
+
+
+
+
+
+
+
+
+

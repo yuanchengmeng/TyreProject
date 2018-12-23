@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.kexun.wm.sale.bean">
+
+	<class name="SeOrder" table="SEOrder">
+		<!-- 映射主键 -->
+        <id name="finterID" column="FInterID" type="integer">
+			<generator class="identity" />
+		</id>
+ 		<!-- 映射基本属性 -->
+		<property name="fareaPS" type="java.lang.Integer">
+			<column name="FAreaPS">
+				<comment>销售范围</comment>
+			</column>
+		</property> 
+		<property name="ftranType" type="java.lang.Integer">
+			<column name="FTranType">
+				<comment>单据类型</comment>
+			</column>
+		</property>
+		<property name="fbillerID" type="java.lang.Integer">
+			<column name="FBillerID">
+				<comment>制单</comment>
+			</column>
+		</property>
+		<property name="fbillNo" type="java.lang.String">
+			<column name="FBillNo">
+				<comment>编    号</comment>
+			</column>
+		</property>
+		<property name="fbrID" type="java.lang.Integer">
+			<column name="fBrID">
+				<comment>制单机构</comment>
+			</column>
+		</property>
+		<property name="fdate" type="java.util.Date">
+			<column name="FDate">
+				<comment>日期</comment>
+			</column>
+		</property>
+		<property name="fdeptID" type="java.lang.Integer">
+			<column name="FDeptID">
+				<comment>部门</comment>
+			</column>
+		</property>
+		<property name="fempID" type="java.lang.Integer">
+			<column name="FEmpID">
+				<comment>业务员</comment>
+			</column>
+		</property>
+		<property name="fmangerID" type="java.lang.Integer">
+			<column name="FMangerID">
+				<comment>主管</comment>
+			</column>
+		</property>
+		<property name="fpOOrdBillNo" type="java.lang.String">
+			<column name="FPOOrdBillNo">
+				<comment>采购订单号</comment>
+			</column>
+		</property>
+		<property name="frelateBrID" type="java.lang.Integer">
+			<column name="FRelateBrID">
+				<comment>订货机构</comment>
+			</column>
+		</property>
+		<property name="fsaleStyle" type="java.lang.Integer">
+			<column name="FSaleStyle">
+				<comment>销售方式</comment>
+			</column>
+		</property>
+		<many-to-one name="customer"  lazy="false" class="Customer">
+			<column name="fCustID" length="11"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>
+
+
+
+
+
+
+
+
+
+

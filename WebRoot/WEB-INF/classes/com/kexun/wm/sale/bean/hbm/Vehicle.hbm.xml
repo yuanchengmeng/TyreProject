@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.kexun.wm.sale.bean">
+
+	<class name="Vehicle" table="vehicle">
+		<!-- 映射主键 -->
+		<comment>车辆信息表</comment>
+		<id name="id" column="id" type="integer">
+			<generator class="identity" />
+		</id>
+
+		<!-- 映射基本属性 -->
+		<property name="vehicleNo" type="java.lang.String">
+			<column name="vehicleNo" length="15">
+				<comment>车牌号</comment>
+			</column>
+		</property>
+		<property name="driver" type="java.lang.String">
+			<column name="driver" length="25">
+				<comment>司机</comment>
+			</column>
+		</property>
+		<property name="phone" type="java.lang.String">
+			<column name="phone" length="25">
+				<comment>电话</comment>
+			</column>
+		</property>
+		<property name="outNo" type="java.lang.String">
+			<column name="outNo">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="orderId" type="java.lang.Integer">
+			<column name="OrderID">
+				<comment></comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>
+
+
+
+
+
+
+
+
+
+

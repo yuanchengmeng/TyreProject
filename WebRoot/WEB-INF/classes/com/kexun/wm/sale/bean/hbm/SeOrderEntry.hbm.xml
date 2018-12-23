@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.kexun.wm.sale.bean">
+
+	<class name="SeOrderEntry" table="SEOrderEntry">
+		<!-- 映射主键 -->
+		<id name="FDetailID" column="FDetailID" type="integer">
+			<generator class="identity" />
+		</id>
+ 		<!-- 映射基本属性 -->
+		<property name="FAdviceConsignDate" type="java.sql.Date">
+			<column name="FAdviceConsignDate">
+				<comment>建议交货日期</comment>
+			</column>
+		</property>
+		<property name="FAmount" type="float">
+			<column name="FAmount">
+				<comment>金额</comment>
+			</column>
+		</property>
+		<property name="FAuxPrice" type="float">
+			<column name="FAuxPrice">
+				<comment>单价</comment>
+			</column>
+		</property>
+		<property name="FAuxQty" type="float">
+			<column name="FAuxQty">
+				<comment>数量</comment>
+			</column>
+		</property>
+		<property name="FAuxStockQty" type="float">
+			<column name="FAuxStockQty">
+				<comment>出库数量(辅助单位)</comment>
+			</column>
+		</property>
+		<property name="FBatchNo" type="java.lang.String">
+			<column name="FBatchNo">
+				<comment>产品批号</comment>
+			</column>
+		</property>
+		<property name="FBCommitQty" type="float">
+			<column name="FBCommitQty">
+				<comment>退货数量</comment>
+			</column>
+		</property>
+		<property name="FBomInterID" type="java.lang.Integer">
+			<column name="FBomInterID">
+				<comment>批号/客户BOM</comment>
+			</column>
+		</property>
+		<property name="FBrNo" type="java.lang.String">
+			<column name="FBrNo">
+				<comment>公司机构内码</comment>
+			</column>
+		</property> 
+		<property name="FCommitQty" type="float">
+			<column name="FCommitQty">
+				<comment>发货数量</comment>
+			</column>
+		</property> 
+		<property name="FDate" type="java.sql.Date">
+			<column name="FDate">
+				<comment>交货日期</comment>
+			</column>
+		</property> 
+		<property name="FFinalAmount" type="float">
+			<column name="FFinalAmount">
+				<comment>折后金额</comment>
+			</column>
+		</property> 
+		<property name="FMapName" type="java.lang.String">
+			<column name="FMapName">
+				<comment>对应名称</comment>
+			</column>
+		</property>
+		<property name="FMapNumber" type="java.lang.String">
+			<column name="FMapNumber">
+				<comment>对应代码</comment>
+			</column>
+		</property> 
+		<property name="FPrice" type="float">
+			<column name="FPrice">
+				<comment>单价</comment>
+			</column>
+		</property>
+		<property name="FQty" type="float">
+			<column name="FQty">
+				<comment>基本单位数量</comment>
+			</column>
+		</property>
+		<property name="FSourceEntryID" type="java.lang.Integer">
+			<column name="FSourceEntryID">
+				<comment>源单行号</comment>
+			</column>
+		</property>
+		<property name="FStockQty" type="float">
+			<column name="FStockQty">
+				<comment>出库数量</comment>
+			</column>
+		</property>
+		<property name="FTax" type="float">
+			<column name="FTax">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="FTaxAmount" type="float">
+			<column name="FTaxAmount">
+				<comment>折扣额</comment>
+			</column>
+		</property>
+		<property name="FTaxRate" type="float">
+			<column name="FTaxRate">
+				<comment>折扣率(%)</comment>
+			</column>
+		</property>
+		<property name="FUnitID" type="java.lang.Integer">
+			<column name="FUnitID">
+				<comment>单位</comment>
+			</column>
+		</property> 
+		<many-to-one name="seOrder"  lazy="false" class="SeOrder">
+			<column name="FInterID" length="11"></column>
+		</many-to-one>
+		<many-to-one name="product"  lazy="false" class="Product">
+			<column name="FItemID" length="11"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>
+
+
+
+
+
+
+
+
+
+

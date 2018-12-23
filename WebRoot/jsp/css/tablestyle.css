@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* CSS Document */
+table{ text-align:center; width:100%; font-size:15px;font-weight:bold;}
+td{height:30px;}
+#tbin { border-left:1px solid #000; border-top:1px solid #000; width:100%}
+#tbin td{ border-right:1px solid #000; border-bottom:1px solid #000;}
+[type=text]{text-align:left; border-style: ridge;}
+#tbin [type=text]{width:70px; height:99%; text-align:center;background-color:transparent;}
+#tbin select{left:5% ;width:90%;}
+#tr1 [type=text]{text-align:left; border-style: ridge;width:20px;}
