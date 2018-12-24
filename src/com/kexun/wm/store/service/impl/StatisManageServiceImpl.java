@@ -34,4 +34,24 @@ public class StatisManageServiceImpl implements StatisManageService {
 		}
     	return standardList;
     }
+	
+	public int queryStandardStatisSize(StatisParams params) throws Exception{
+		return statisManageDao.queryStandardStatisSize(params);
+	}
+	
+	public List<StandardStatisVo> queryAllStandardStatis(StatisParams params) throws Exception{
+		List<StandardStatisVo> standardList = statisManageDao.queryAllStandardStatis(params);
+		if(null != standardList && standardList.size()> 0){
+			for(StandardStatisVo standard: standardList){
+				standard.setProduct(storeService.getProductById(standard.getProductID()));
+				standard.setSysUser(sysUserService.findByName(standard.getPerson()));
+				if("1".equals(standard.getStoreType())){
+					standard.setStoreType("入库");
+				}else{
+					standard.setStoreType("出库");
+				}
+			}
+		}
+		return standardList;
+	}
 }

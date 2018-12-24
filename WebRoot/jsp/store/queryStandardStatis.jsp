@@ -25,40 +25,41 @@
 	function page(flag) {
 	    var timeStart = document.getElementById("timeStart").value;
 	    var timeEnd = document.getElementById("timeEnd").value;
+	    var person = document.getElementById("person").value;
 		var pageSize = document.getElementById("pageSize").value;
 		var pageCount = document.getElementById("pageCount").value;
 		var pageNo = document.getElementById("pageNo").value;
 		var gotopage = document.getElementById("gotopage").value;
 		if ("first" == flag) {
-		location.href = "/TyreProject/store/queryDayReport?flag=1&&pageNo=1"
-					+ "&&pageSize=" + pageSize+"&&dayReport.timeStart="+timeStart+"&&dayReport.timeEnd="+timeEnd;
+		location.href = "/TyreProject/store/queryStandardStatis?flag=1&&pageNo=1"
+					+ "&&pageSize=" + pageSize+"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.person="+encodeURI(encodeURI(person));
 		} else if ("end" == flag) {
-		location.href = "/TyreProject/store/queryDayReport?flag=1&&pageNo=" + pageCount
-					+ "&&pageSize=" + pageSize+"&&dayReport.timeStart="+timeStart+"&&dayReport.timeEnd="+timeEnd;
+		location.href = "/TyreProject/store/queryStandardStatis?flag=1&&pageNo=" + pageCount
+					+ "&&pageSize=" + pageSize+"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.person="+encodeURI(encodeURI(person));
 		} else if ("last" == flag) {
-		location.href = "/TyreProject/store/lastDayReportPage?flag=1&&pageNo=" + pageNo
-					+ "&&pageSize=" + pageSize+"&&dayReport.timeStart="+timeStart+"&&dayReport.timeEnd="+timeEnd;
+		location.href = "/TyreProject/store/queryStandardStatis?flag=1&&pageNo=" + (parseInt(pageNo)-1)
+					+ "&&pageSize=" + pageSize +"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.person="+encodeURI(encodeURI(person));
 		} else if ("next" == flag) {
-		location.href = "/TyreProject/store/nextDayReportPage?flag=1&&pageNo=" + pageNo
-					+ "&&pageSize=" + pageSize+"&&dayReport.timeStart="+timeStart+"&&dayReport.timeEnd="+timeEnd;
+		location.href = "/TyreProject/store/queryStandardStatis?flag=1&&pageNo=" + (parseInt(pageNo)+1)
+					+ "&&pageSize=" + pageSize +"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.person="+encodeURI(encodeURI(person));
 		} else if ("go" == flag) {
 		   if (parseInt(gotopage) <= parseInt(pageCount)){
-				location.href = "/TyreProject/store/queryDayReport?flag=1&&pageNo="
-						+ gotopage + "&&pageSize=" + pageSize+"&&dayReport.timeStart="+timeStart+"&&dayReport.timeEnd="+timeEnd;
+				location.href = "/TyreProject/store/queryStandardStatis?flag=1&&pageNo="
+						+ gotopage + "&&pageSize="+"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.person="+encodeURI(encodeURI(person));
 			} else {
 			    alert("请输入不大于" + pageCount + "的正整数");
 			}
 		} else if ("selectPageSize" == flag) {
-		location.href = "/TyreProject/store/queryDayReport?flag=1&&pageNo=1"
-					+ "&&pageSize=" + pageSize+"&&dayReport.timeStart="+timeStart+"&&dayReport.timeEnd="+timeEnd;
+		location.href = "/TyreProject/store/queryStandardStatis?flag=1&&pageNo=1"
+					+ "&&pageSize=" + pageSize+"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.person="+encodeURI(encodeURI(person));
 		}
 	}
 	 
 	function exportIn() {
 	    var timeStart = document.getElementById("timeStart").value;
 	    var timeEnd = document.getElementById("timeEnd").value;
-	    var classId = document.getElementById("classId").value;
-		location.href = "/TyreProject/store/exportDayReportExcel?flag=1&&dayReport.timeStart="+timeStart+"&&dayReport.timeEnd="+timeEnd;
+	    var person = document.getElementById("person").value;
+		location.href = "/TyreProject/store/exportStandardStatis?flag=1&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.person="+encodeURI(encodeURI(person));
 	 }
 	 
 	 function IsNullDay(){
@@ -77,7 +78,7 @@
 <body>
 	${success}
 	<s:form action="queryStandardStatis" namespace="/store">
-		<s:hidden name="flag" value="1" />
+		<s:hidden name="flag" value="0" />
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tbody>
 				<tr>
@@ -113,11 +114,11 @@
 																<tr class="query_two">
 																	<td width="50%">&nbsp;日期：<input type="text"
 																		name="params.timeStart" id="timeStart"
-																		onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+																		onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
 																		class="Wdate" style="width:150px"
 																		value="${params.timeStart}" /> 至 <input type="text"
 																		name="params.timeEnd" id="timeEnd"
-																		onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+																		onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
 																		class="Wdate" style="width:150px"
 																		value="${params.timeEnd}" />
 																	</td>

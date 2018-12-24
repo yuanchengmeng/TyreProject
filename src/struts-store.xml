@@ -7,6 +7,8 @@
 			method="queryStandardStatis">
 			<result name="queryStandardStatis">/jsp/store/queryStandardStatis.jsp</result>
 		</action>
+		<action name="exportStandardStatis" class="com.kexun.wm.store.action.StatisManageAction" method="exportExcel">
+ 		</action>
 		<!-- 手持用户的后台数据操作 -->
 		<action name="queryHUser" class="com.kexun.wm.store.action.HUserAction"
 			method="queryHUser">
