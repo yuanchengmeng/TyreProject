@@ -81,8 +81,11 @@ public class StatisManageAction {
 		HSSFSheet sheet = wb.getSheet("规格统计");
 		HSSFRow row = sheet.getRow(0);
 		row.getCell(0).setCellValue("时间："+params.getTimeStart() +"——"+params.getTimeEnd());
-		int i=1;
+		if("1".equals(flag) && StringUtils.isNotBlank(params.getPerson())){
+			params.setPerson(URLDecoder.decode(params.getPerson(), "UTF-8"));
+		}
 		List<StandardStatisVo> list = statisManageService.queryAllStandardStatis(params);
+		int i=1;
 		for (StandardStatisVo s: list) {
 			row = sheet.getRow((int) i + 1);
 			row.getCell(0).setCellValue(s.getStoreType());
