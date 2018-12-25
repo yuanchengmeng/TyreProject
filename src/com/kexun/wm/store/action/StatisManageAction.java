@@ -17,7 +17,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.kexun.wm.store.bean.StandardStatisVo;
 import com.kexun.wm.store.bean.StatisParams;
-import com.kexun.wm.store.bean.Store;
+import com.kexun.wm.store.bean.StoreStatisVo;
 import com.kexun.wm.store.service.StatisManageService;
 import com.kexun.wm.store.service.impl.StatisManageServiceImpl;
 import com.kexun.wm.system.bean.PageSize;
@@ -38,6 +38,7 @@ public class StatisManageAction {
 	private int pageSize;
 	private int recordCount;
 	private StatisParams params = new StatisParams();
+	private StoreStatisVo storeStatisVo = new StoreStatisVo();
 	private List<StandardStatisVo> standardList;
 	private List<PageSize> pageSizeList;
 	
@@ -62,6 +63,17 @@ public class StatisManageAction {
 		}
 		standardList = statisManageService.queryStandardStatis(params, pageNo, pageSize);
 		return "queryStandardStatis";
+	}
+	
+	public String queryStoreAmount() throws Exception {
+		if(StringUtils.isBlank(params.getTimeStart())){
+			params.setTimeStart(AllSelectItemUtil.getDateByDay(0));
+		}
+		if(StringUtils.isBlank(params.getTimeEnd())){
+			params.setTimeEnd(AllSelectItemUtil.getNowTime());
+		}
+		storeStatisVo = statisManageService.queryStoreAmount(params);
+		return "queryStoreAmount";
 	}
 	
 	public String exportExcel() throws Exception {
@@ -178,6 +190,14 @@ public class StatisManageAction {
 
 	public void setFlag(String flag) {
 		this.flag = flag;
+	}
+
+	public StoreStatisVo getStoreStatisVo() {
+		return storeStatisVo;
+	}
+
+	public void setStoreStatisVo(StoreStatisVo storeStatisVo) {
+		this.storeStatisVo = storeStatisVo;
 	}
 	 
 }

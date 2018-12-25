@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kexun.wm.store.bean.StandardStatisVo;
 import com.kexun.wm.store.bean.StatisParams;
+import com.kexun.wm.store.bean.StoreStatisVo;
 import com.kexun.wm.store.dao.StatisManageDao;
 import com.kexun.wm.store.dao.impl.StatisManageDaoImpl;
 import com.kexun.wm.store.service.StatisManageService;
@@ -53,5 +54,16 @@ public class StatisManageServiceImpl implements StatisManageService {
 			}
 		}
 		return standardList;
+	}
+
+	public StoreStatisVo queryStoreAmount(StatisParams params) throws Exception {
+		long inStoreAmount = statisManageDao.queryInStoreAmount(params);//入库数量
+		long outStoreAmount = statisManageDao.queryOutStoreAmount(params);//出库数量
+	    long storeAmount = statisManageDao.queryStoreAmount(params);//库存数量
+	    StoreStatisVo vo = new StoreStatisVo();
+	    vo.setInStoreAmount(inStoreAmount);
+	    vo.setOutStoreAmount(outStoreAmount);
+	    vo.setStoreAmount(storeAmount);
+		return vo;
 	}
 }

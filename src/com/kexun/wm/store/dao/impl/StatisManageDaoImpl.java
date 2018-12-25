@@ -152,4 +152,81 @@ public class StatisManageDaoImpl implements StatisManageDao {
 		}
 		return standardList;
 	}
+
+
+	public long queryInStoreAmount(StatisParams params) throws Exception {
+		long n = 0;
+		Session session = null;
+		try {
+			session = sf.openSession();
+			String sql = "select COUNT(1) from hand_store t1 where t1.StoreState in('在库','已出库')";
+			
+			if (null != params && StringUtils.isNotBlank(params.getTimeStart())) {
+				sql += " and t1.InTime >'"+params.getTimeStart()+"'";
+			}		
+			if (null != params && StringUtils.isNotBlank(params.getTimeEnd())) {
+				sql += " and t1.InTime <'"+params.getTimeEnd()+"'";
+			}		
+			if (null != params && StringUtils.isNotBlank(params.getPerson())) {
+				sql += " and t1.InMan like '%"+params.getPerson()+"%'";
+			}
+			SQLQuery query = session.createSQLQuery(sql);
+			n = ((Number) query.uniqueResult()).longValue();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null)
+				session.clear();
+				session.close();
+		}
+		return n;
+	}
+
+
+	public long queryOutStoreAmount(StatisParams params) throws Exception {
+		long n = 0;
+		Session session = null;
+		try {
+			session = sf.openSession();
+			String sql = "select COUNT(1) from hand_store t1 where t1.StoreState = '已出库'";
+			
+			if (null != params && StringUtils.isNotBlank(params.getTimeStart())) {
+				sql += " and t1.OutTime >'"+params.getTimeStart()+"'";
+			}		
+			if (null != params && StringUtils.isNotBlank(params.getTimeEnd())) {
+				sql += " and t1.OutTime <'"+params.getTimeEnd()+"'";
+			}		
+			if (null != params && StringUtils.isNotBlank(params.getPerson())) {
+				sql += " and t1.OutMan like '%"+params.getPerson()+"%'";
+			}
+			SQLQuery query = session.createSQLQuery(sql);
+			n = ((Number) query.uniqueResult()).longValue();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null)
+				session.clear();
+				session.close();
+		}
+		return n;
+	}
+
+
+	public long queryStoreAmount(StatisParams params) throws Exception {
+		long n = 0;
+		Session session = null;
+		try {
+			session = sf.openSession();
+			String sql = "select COUNT(1) from hand_store t1 where t1.StoreState = '在库'";
+			SQLQuery query = session.createSQLQuery(sql);
+			n = ((Number) query.uniqueResult()).longValue();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null)
+				session.clear();
+				session.close();
+		}
+		return n;
+	}
 }

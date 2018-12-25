@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kexun.wm.store.bean.StandardStatisVo;
 import com.kexun.wm.store.bean.StatisParams;
+import com.kexun.wm.store.bean.StoreStatisVo;
 
 public interface StatisManageService {
 
@@ -12,4 +13,12 @@ public interface StatisManageService {
 	int queryStandardStatisSize(StatisParams params) throws Exception;
 	
 	List<StandardStatisVo> queryAllStandardStatis(StatisParams params) throws Exception;
+	
+	/**
+	 * 查询库存数量
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
+	StoreStatisVo queryStoreAmount(StatisParams params) throws Exception;
 }

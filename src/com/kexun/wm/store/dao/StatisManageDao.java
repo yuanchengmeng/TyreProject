@@ -12,4 +12,28 @@ public interface StatisManageDao {
 	int queryStandardStatisSize(StatisParams params) throws Exception;
 	
 	List<StandardStatisVo> queryAllStandardStatis(StatisParams params) throws Exception;
+	
+	/**
+	 * 查询入库数量
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
+	long queryInStoreAmount(StatisParams params) throws Exception;
+	
+	/**
+	 * 查询出库数量
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
+	long queryOutStoreAmount(StatisParams params) throws Exception;
+	
+	/**
+	 * 查询库存数量
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
+	long queryStoreAmount(StatisParams params) throws Exception;
 }

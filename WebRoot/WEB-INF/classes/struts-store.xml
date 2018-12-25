@@ -9,6 +9,10 @@
 		</action>
 		<action name="exportStandardStatis" class="com.kexun.wm.store.action.StatisManageAction" method="exportExcel">
  		</action>
+ 		<action name="queryStoreAmount" class="com.kexun.wm.store.action.StatisManageAction"
+			method="queryStoreAmount">
+			<result name="queryStoreAmount">/jsp/store/queryStoreAmount.jsp</result>
+		</action>
 		<!-- 手持用户的后台数据操作 -->
 		<action name="queryHUser" class="com.kexun.wm.store.action.HUserAction"
 			method="queryHUser">
