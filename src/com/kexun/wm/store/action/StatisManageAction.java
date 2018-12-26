@@ -65,21 +65,10 @@ public class StatisManageAction {
 		return "queryStandardStatis";
 	}
 	
-	public String queryStoreAmount() throws Exception {
-		if(StringUtils.isBlank(params.getTimeStart())){
-			params.setTimeStart(AllSelectItemUtil.getDateByDay(0));
-		}
-		if(StringUtils.isBlank(params.getTimeEnd())){
-			params.setTimeEnd(AllSelectItemUtil.getNowTime());
-		}
-		storeStatisVo = statisManageService.queryStoreAmount(params);
-		return "queryStoreAmount";
-	}
-	
-	public String exportExcel() throws Exception {
+	public String exportStandardStatis() throws Exception {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String fileModelUrl = request.getSession().getServletContext().getRealPath("/")+"standardStatis.xls";
-		String filename = "规格统计 " + AllSelectItemUtil.defaultTime("yyyyMMddHHmmss") + ".xls";
+		String filename = "工号规格统计" + AllSelectItemUtil.defaultTime("yyyyMMdd") + ".xls";
 			 
 		HttpServletResponse response = (HttpServletResponse) ActionContext
 				.getContext().get(
@@ -90,7 +79,7 @@ public class StatisManageAction {
 		response.setContentType("application/msexcel");
 		POIFSFileSystem fs=new POIFSFileSystem(new FileInputStream(fileModelUrl));
 		HSSFWorkbook wb = new HSSFWorkbook(fs);
-		HSSFSheet sheet = wb.getSheet("规格统计");
+		HSSFSheet sheet = wb.getSheet("工号规格统计");
 		HSSFRow row = sheet.getRow(0);
 		row.getCell(0).setCellValue("时间："+params.getTimeStart() +"——"+params.getTimeEnd());
 		if("1".equals(flag) && StringUtils.isNotBlank(params.getPerson())){
@@ -120,6 +109,75 @@ public class StatisManageAction {
 		return null;
 	}
 
+	public String queryStoreAmount() throws Exception {
+		if(StringUtils.isBlank(params.getTimeStart())){
+			params.setTimeStart(AllSelectItemUtil.getDateByDay(0));
+		}
+		if(StringUtils.isBlank(params.getTimeEnd())){
+			params.setTimeEnd(AllSelectItemUtil.getNowTime());
+		}
+		storeStatisVo = statisManageService.queryStoreAmount(params);
+		return "queryStoreAmount";
+	}
+	
+	public String queryStoreStatis() throws Exception {
+		pageSizeList = AllSelectItemUtil.queryPageSize();
+		if (pageSize == 0) {
+			pageSize = pageSizeList.get(1).getPsize();
+		}
+		
+		if(StringUtils.isBlank(params.getTimeStart())){
+			params.setTimeStart(AllSelectItemUtil.getDateByDay(0));
+		}
+		if(StringUtils.isBlank(params.getTimeEnd())){
+			params.setTimeEnd(AllSelectItemUtil.getNowTime());
+		}
+		recordCount = statisManageService.queryStoreStatisSize(params);
+		if (pageSize != 0) {
+			pageCount = (recordCount + pageSize - 1) / pageSize;
+		}
+		standardList = statisManageService.queryStoreStatis(params, pageNo, pageSize);
+		return "queryStoreStatis";
+	}
+	
+	public String exportStoreStatis() throws Exception {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String fileModelUrl = request.getSession().getServletContext().getRealPath("/")+"storeStatis.xls";
+		String filename = "库存规格统计" + AllSelectItemUtil.defaultTime("yyyyMMdd") + ".xls";
+			 
+		HttpServletResponse response = (HttpServletResponse) ActionContext
+				.getContext().get(
+						org.apache.struts2.StrutsStatics.HTTP_RESPONSE);
+		OutputStream os = response.getOutputStream();
+ 		response.setHeader("Content-Disposition", "attachment;filename="
+				+ new String(filename.getBytes(), "UTF-8"));
+		response.setContentType("application/msexcel");
+		POIFSFileSystem fs=new POIFSFileSystem(new FileInputStream(fileModelUrl));
+		HSSFWorkbook wb = new HSSFWorkbook(fs);
+		HSSFSheet sheet = wb.getSheet("库存规格统计");
+		HSSFRow row = sheet.getRow(0);
+		row.getCell(0).setCellValue("时间："+params.getTimeStart() +"——"+params.getTimeEnd());
+		List<StandardStatisVo> list = statisManageService.queryAllStoreStatis(params);
+		int i=1;
+		for (StandardStatisVo s: list) {
+			row = sheet.getRow((int) i + 1);
+			row.getCell(0).setCellValue(s.getStoreType());
+			row.getCell(1).setCellValue(s.getProduct().getFName());
+			row.getCell(2).setCellValue(s.getAmount());
+			i++;
+		}
+	 
+		try {
+			wb.write(os);
+			fs.close();
+			os.close();
+			wb.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return null;
+	}
+	
 	public StatisManageService getStatisManageService() {
 		return statisManageService;
 	}

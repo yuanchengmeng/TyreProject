@@ -25,41 +25,41 @@
 	function page(flag) {
 	    var timeStart = document.getElementById("timeStart").value;
 	    var timeEnd = document.getElementById("timeEnd").value;
-	    var person = document.getElementById("person").value;
+	    var productName = document.getElementById("productName").value;
 		var pageSize = document.getElementById("pageSize").value;
 		var pageCount = document.getElementById("pageCount").value;
 		var pageNo = document.getElementById("pageNo").value;
 		var gotopage = document.getElementById("gotopage").value;
 		if ("first" == flag) {
-		location.href = "/TyreProject/store/queryStandardStatis?flag=1&&pageNo=1"
-					+ "&&pageSize=" + pageSize+"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.person="+encodeURI(encodeURI(person));
+		location.href = "/TyreProject/store/queryStoreStatis?flag=1&&pageNo=1"
+					+ "&&pageSize=" + pageSize+"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.productName="+productName;
 		} else if ("end" == flag) {
-		location.href = "/TyreProject/store/queryStandardStatis?flag=1&&pageNo=" + pageCount
-					+ "&&pageSize=" + pageSize+"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.person="+encodeURI(encodeURI(person));
+		location.href = "/TyreProject/store/queryStoreStatis?flag=1&&pageNo=" + pageCount
+					+ "&&pageSize=" + pageSize+"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.productName="+productName;
 		} else if ("last" == flag) {
-		location.href = "/TyreProject/store/queryStandardStatis?flag=1&&pageNo=" + (parseInt(pageNo)-1)
-					+ "&&pageSize=" + pageSize +"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.person="+encodeURI(encodeURI(person));
+		location.href = "/TyreProject/store/queryStoreStatis?flag=1&&pageNo=" + (parseInt(pageNo)-1)
+					+ "&&pageSize=" + pageSize +"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.productName="+productName;
 		} else if ("next" == flag) {
-		location.href = "/TyreProject/store/queryStandardStatis?flag=1&&pageNo=" + (parseInt(pageNo)+1)
-					+ "&&pageSize=" + pageSize +"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.person="+encodeURI(encodeURI(person));
+		location.href = "/TyreProject/store/queryStoreStatis?flag=1&&pageNo=" + (parseInt(pageNo)+1)
+					+ "&&pageSize=" + pageSize +"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.productName="+productName;
 		} else if ("go" == flag) {
 		   if (parseInt(gotopage) <= parseInt(pageCount)){
-				location.href = "/TyreProject/store/queryStandardStatis?flag=1&&pageNo="
-						+ gotopage + "&&pageSize="+"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.person="+encodeURI(encodeURI(person));
+				location.href = "/TyreProject/store/queryStoreStatis?flag=1&&pageNo="
+						+ gotopage + "&&pageSize="+"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.productName="+productName;
 			} else {
 			    alert("请输入不大于" + pageCount + "的正整数");
 			}
 		} else if ("selectPageSize" == flag) {
-		location.href = "/TyreProject/store/queryStandardStatis?flag=1&&pageNo=1"
-					+ "&&pageSize=" + pageSize+"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.person="+encodeURI(encodeURI(person));
+		location.href = "/TyreProject/store/queryStoreStatis?flag=1&&pageNo=1"
+					+ "&&pageSize=" + pageSize+"&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.productName="+productName;
 		}
 	}
 	 
 	function exportIn() {
 	    var timeStart = document.getElementById("timeStart").value;
 	    var timeEnd = document.getElementById("timeEnd").value;
-	    var person = document.getElementById("person").value;
-		location.href = "/TyreProject/store/exportStandardStatis?flag=1&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.person="+encodeURI(encodeURI(person));
+	    var productName = document.getElementById("productName").value;
+		location.href = "/TyreProject/store/exportStoreStatis?flag=1&&params.timeStart="+timeStart+"&&params.timeEnd="+timeEnd+"&&params.productName="+productName;
 	 }
 	 
 	 function IsNullDay(){
@@ -77,8 +77,7 @@
 
 <body>
 	${success}
-	<s:form action="queryStandardStatis" namespace="/store">
-		<s:hidden name="flag" value="0" />
+	<s:form action="queryStoreStatis" namespace="/store">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tbody>
 				<tr>
@@ -98,7 +97,7 @@
 														</td>
 														<td
 															background="<%=request.getContextPath()%>/jsp/images/xxnr_10.jpg"></br>&nbsp;<span
-															class="dqwz"><b>当前位置：</b> 工号规格统计</span></td>
+															class="dqwz"><b>当前位置：</b> 库存规格统计</span></td>
 														<td width="20" height="42"><img
 															src="<%=request.getContextPath()%>/jsp/images/xxnr_18.jpg"
 															width="20" height="42"></td>
@@ -122,9 +121,9 @@
 																		class="Wdate" style="width:150px"
 																		value="${params.timeEnd}" />
 																	</td>
-																	<td>&nbsp;操作人：<input type="text"
-																		name="params.person" id="person"
-																		value="${params.person}" />
+																	<td>&nbsp;规格名称：<input type="text"
+																		name="params.productName" id="productName"
+																		value="${params.productName}" />
 																	</td>
 																	<td><input style="color:white"
 																		type="button" onclick="IsNullDay();" value="查询" class="input_submit">&nbsp;&nbsp;
@@ -145,12 +144,9 @@
 																			</div>
 																		</th>
 																		<th style="text-align: center;color:black">序号</th>
-																		<th style="color:black">操作</th>
+																		<th style="color:black">状态</th>
 																		<th style="color:black">规格</th>
 																		<th style="color:black">数量</th>
-																		<th style="color:black">姓名</th>
-																		<th style="color:black">工号</th>
-																		<th style="color:black">班次</th>
 																	</tr>
 																</thead>
 																<tbody>
@@ -168,9 +164,6 @@
 																			<td><s:property value="#standard.getStoreType()" /></td>
 																			<td><s:property value="#standard.getProduct().getFName()" /></td>
 																			<td><s:property value="#standard.getAmount()" /></td>
-																			<td><s:property value="#standard.getPerson()" /></td>
-																			<td><s:property value="#standard.getSysUser().getJobNo()" /></td>
-																			<td><s:property value="#standard.getClasses()" /></td>
 																		</tr>
 																	</s:iterator>
 																</tbody>

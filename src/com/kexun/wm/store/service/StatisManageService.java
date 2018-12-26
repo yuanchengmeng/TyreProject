@@ -21,4 +21,30 @@ public interface StatisManageService {
 	 * @throws Exception
 	 */
 	StoreStatisVo queryStoreAmount(StatisParams params) throws Exception;
+	
+	/**
+	 * 查询规格统计（入库、出库、库存）
+	 * @param params
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	List<StandardStatisVo> queryStoreStatis(StatisParams params, int pageNo, int pageSize) throws Exception;
+	
+	/**
+	 * 查询规格总数量（入库、出库、库存）
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
+	int queryStoreStatisSize(StatisParams params) throws Exception;
+	
+	/**
+	 * 查询所有数据--导出用
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
+	List<StandardStatisVo> queryAllStoreStatis(StatisParams params) throws Exception;
 }

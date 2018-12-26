@@ -7,12 +7,18 @@
 			method="queryStandardStatis">
 			<result name="queryStandardStatis">/jsp/store/queryStandardStatis.jsp</result>
 		</action>
-		<action name="exportStandardStatis" class="com.kexun.wm.store.action.StatisManageAction" method="exportExcel">
+		<action name="exportStandardStatis" class="com.kexun.wm.store.action.StatisManageAction" method="exportStandardStatis">
  		</action>
  		<action name="queryStoreAmount" class="com.kexun.wm.store.action.StatisManageAction"
 			method="queryStoreAmount">
 			<result name="queryStoreAmount">/jsp/store/queryStoreAmount.jsp</result>
 		</action>
+		<action name="queryStoreStatis" class="com.kexun.wm.store.action.StatisManageAction"
+			method="queryStoreStatis">
+			<result name="queryStoreStatis">/jsp/store/queryStoreStatis.jsp</result>
+		</action>
+		<action name="exportStoreStatis" class="com.kexun.wm.store.action.StatisManageAction" method="exportStoreStatis">
+ 		</action>
 		<!-- 手持用户的后台数据操作 -->
 		<action name="queryHUser" class="com.kexun.wm.store.action.HUserAction"
 			method="queryHUser">

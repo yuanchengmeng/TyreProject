@@ -1,6 +1,9 @@
 package com.kexun.wm.store.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.jfree.chart.plot.dial.ArcDialFrame;
 
 import com.kexun.wm.store.bean.StandardStatisVo;
 import com.kexun.wm.store.bean.StatisParams;
@@ -65,5 +68,51 @@ public class StatisManageServiceImpl implements StatisManageService {
 	    vo.setOutStoreAmount(outStoreAmount);
 	    vo.setStoreAmount(storeAmount);
 		return vo;
+	}
+	
+public List<StandardStatisVo> queryStoreStatis(StatisParams params, int pageNo, int pageSize) throws Exception{
+		List<StandardStatisVo> standardList = new ArrayList<StandardStatisVo>();
+		List<Object[]> objecyList = statisManageDao.queryStoreStatis(params, pageNo, pageSize);
+		if(null != objecyList && objecyList.size()> 0){
+			for(Object[] objs: objecyList){
+				StandardStatisVo standard = new StandardStatisVo();
+				standard.setProduct(storeService.getProductById((Integer)objs[0]));
+				standard.setAmount((Integer)objs[1]);
+				if(0 == params.getStoreType()){
+					standard.setStoreType("库存");
+				}else if(1 == params.getStoreType()){
+					standard.setStoreType("入库");
+				}else if(2 == params.getStoreType()){
+					standard.setStoreType("出库");
+				}
+				standardList.add(standard);
+			}
+		}
+    	return standardList;
+    }
+	
+	public int queryStoreStatisSize(StatisParams params) throws Exception{
+		return statisManageDao.queryStoreStatisSize(params);
+	}
+	
+	public List<StandardStatisVo> queryAllStoreStatis(StatisParams params) throws Exception{
+		List<StandardStatisVo> standardList = new ArrayList<StandardStatisVo>();
+		List<Object[]> objecyList = statisManageDao.queryAllStoreStatis(params);
+		if(null != objecyList && objecyList.size()> 0){
+			for(Object[] objs: objecyList){
+				StandardStatisVo standard = new StandardStatisVo();
+				standard.setProduct(storeService.getProductById((Integer)objs[0]));
+				standard.setAmount((Integer)objs[1]);
+				if(0 == params.getStoreType()){
+					standard.setStoreType("库存");
+				}else if(1 == params.getStoreType()){
+					standard.setStoreType("入库");
+				}else if(2 == params.getStoreType()){
+					standard.setStoreType("出库");
+				}
+				standardList.add(standard);
+			}
+		}
+    	return standardList;
 	}
 }

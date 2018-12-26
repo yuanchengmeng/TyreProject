@@ -36,4 +36,30 @@ public interface StatisManageDao {
 	 * @throws Exception
 	 */
 	long queryStoreAmount(StatisParams params) throws Exception;
+	
+	/**
+	 * 查询规格统计（入库、出库、库存）
+	 * @param params
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	List<Object[]> queryStoreStatis(StatisParams params, int pageNo, int pageSize) throws Exception;
+	
+	/**
+	 * 查询规格总数量（入库、出库、库存）
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
+	int queryStoreStatisSize(StatisParams params) throws Exception;
+	
+	/**
+	 * 查询所有数据--导出用
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
+	List<Object[]> queryAllStoreStatis(StatisParams params) throws Exception;
 }

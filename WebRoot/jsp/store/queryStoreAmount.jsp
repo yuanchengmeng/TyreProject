@@ -59,7 +59,7 @@
 														</td>
 														<td
 															background="<%=request.getContextPath()%>/jsp/images/xxnr_10.jpg"></br>&nbsp;<span
-															class="dqwz"><b>当前位置：</b> 库存统计</span></td>
+															class="dqwz"><b>当前位置：</b> 库存数量统计</span></td>
 														<td width="20" height="42"><img
 															src="<%=request.getContextPath()%>/jsp/images/xxnr_18.jpg"
 															width="20" height="42"></td>

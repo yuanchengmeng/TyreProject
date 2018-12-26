@@ -9,6 +9,8 @@ public class StatisParams {
     private String timeStart;//统计开始时间
 	private String timeEnd;//统计结束时间
 	private String person;//操作员
+	private int storeType;//轮胎状态
+	private String productName;//规格名称
 	
 	public String getTimeStart() {
 		return timeStart;
@@ -27,6 +29,18 @@ public class StatisParams {
 	}
 	public void setPerson(String person) {
 		this.person = person;
+	}
+	public int getStoreType() {
+		return storeType;
+	}
+	public void setStoreType(int storeType) {
+		this.storeType = storeType;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 	
 }

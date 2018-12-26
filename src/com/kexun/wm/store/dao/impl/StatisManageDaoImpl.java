@@ -153,7 +153,6 @@ public class StatisManageDaoImpl implements StatisManageDao {
 		return standardList;
 	}
 
-
 	public long queryInStoreAmount(StatisParams params) throws Exception {
 		long n = 0;
 		Session session = null;
@@ -228,5 +227,96 @@ public class StatisManageDaoImpl implements StatisManageDao {
 				session.close();
 		}
 		return n;
+	}
+	
+	public List<Object[]> queryStoreStatis(StatisParams params, int pageNo, int pageSize) throws Exception {
+ 		List<Object[]> standardList = null;
+		Session session = null;
+		try {
+			session = sf.openSession();
+			int beginPos = (pageNo - 1) * pageSize;
+			
+			String sql = "select t1.ProductID productID,COUNT(1) amount from hand_store t1 where 1=1";
+			
+			if (null != params && StringUtils.isNotBlank(params.getTimeStart())) {
+				sql += " and t1.InTime >'"+params.getTimeStart()+"'";
+			}		
+			if (null != params && StringUtils.isNotBlank(params.getTimeEnd())) {
+				sql += " and t1.InTime <'"+params.getTimeEnd()+"'";
+			}		
+			 
+			sql += " group by t1.ProductID";
+			 
+			
+			SQLQuery query = session.createSQLQuery(sql);
+			query.setFirstResult(beginPos);
+			query.setMaxResults(pageSize);
+			standardList=query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null)
+				session.clear();
+				session.close();
+		}
+		return standardList;
+	}
+	 
+	
+	public int queryStoreStatisSize(StatisParams params) throws Exception {
+		int n = 0;
+		Session session = null;
+		try {
+			session = sf.openSession();
+			String sql = "select count(1) from (select t1.ProductID productID,COUNT(1) amount from hand_store t1 where 1=1";
+			
+			if (null != params && StringUtils.isNotBlank(params.getTimeStart())) {
+				sql += " and t1.InTime >'"+params.getTimeStart()+"'";
+			}		
+			if (null != params && StringUtils.isNotBlank(params.getTimeEnd())) {
+				sql += " and t1.InTime <'"+params.getTimeEnd()+"'";
+			}		
+			 
+			sql += " group by t1.ProductID) a";
+			
+			SQLQuery query = session.createSQLQuery(sql);
+			n = ((Number) query.uniqueResult()).intValue();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null)
+				session.clear();
+				session.close();
+		}
+		return n;
+	}
+	
+	public List<Object[]> queryAllStoreStatis(StatisParams params) throws Exception {
+ 		List<Object[]> standardList = null;
+		Session session = null;
+		try {
+			session = sf.openSession();
+			
+			String sql = "select t1.ProductID productID,COUNT(1) amount from hand_store t1 where 1=1";
+			
+			if (null != params && StringUtils.isNotBlank(params.getTimeStart())) {
+				sql += " and t1.InTime >'"+params.getTimeStart()+"'";
+			}		
+			if (null != params && StringUtils.isNotBlank(params.getTimeEnd())) {
+				sql += " and t1.InTime <'"+params.getTimeEnd()+"'";
+			}		
+			 
+			sql += "group by t1.ProductID";
+			
+			SQLQuery query = session.createSQLQuery(sql);
+			standardList=query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null)
+				session.clear();
+				session.close();
+		}
+		return standardList;
 	}
 }
