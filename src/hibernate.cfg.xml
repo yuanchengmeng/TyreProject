@@ -13,16 +13,16 @@
 		org.hibernate.dialect.SQLServerDialect
 	</property>
 
-	<property name="connection.url">
+	<!-- <property name="connection.url">
 		jdbc:sqlserver://localhost:1433;database=wms
 	</property>
 	<property name="connection.username">sa</property>
-	<property name="connection.password">xhy.123</property>
-  	<!-- <property name="connection.url">
+	<property name="connection.password">xhy.123</property> -->
+  	<property name="connection.url">
 		jdbc:sqlserver://10.10.106.11:1433;database=wms
 		</property>
 		<property name="connection.username">sa</property>
-		<property name="connection.password">xhy.123</property> -->
+		<property name="connection.password">xhy.123</property>
 
 	<property name="connection.driver_class">
 		com.microsoft.sqlserver.jdbc.SQLServerDriver
