@@ -2,6 +2,7 @@ package com.kexun.wm.store.dao;
 
 import java.util.List;
 
+import com.kexun.wm.sale.bean.Product;
 import com.kexun.wm.store.bean.StandardStatisVo;
 import com.kexun.wm.store.bean.StatisParams;
 
@@ -62,4 +63,12 @@ public interface StatisManageDao {
 	 * @throws Exception
 	 */
 	List<Object[]> queryAllStoreStatis(StatisParams params) throws Exception;
+	
+	/**
+	 * 通过名称查询规格
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
+	List<Product> queryProductByName(String productName) throws Exception;
 }

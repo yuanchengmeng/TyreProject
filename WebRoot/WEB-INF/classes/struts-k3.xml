@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd" >
+<struts>
+	<package name="k3" namespace="/k3" extends="struts-default">
+		
+		<!-- 手持用户的后台数据操作 -->
+		<action name="queryOutStock" class="com.kexun.wm.icStock.action.ICStockBillAction"
+			method="queryOutStock">
+			<result name="queryOutStock">/jsp/k3/queryOutStock.jsp</result>
+		</action>
+	</package>
+</struts>
+

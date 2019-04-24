@@ -111,7 +111,26 @@
 															<table width="100%" border="0" cellpadding="0"
 																cellspacing="1">
 																<tr class="query_two">
-																	<td width="50%">&nbsp;日期：<input type="text"
+																<td width="10%"><strong>状态：</strong>
+																	<select name="params.storeType" style="width:100px">
+																			<s:if test="params.storeType==0">
+																				<option value=0 selected>库存统计</option>
+																				<option value=1>入库统计</option>
+																				<option value=2>出库统计</option>
+																			</s:if>
+																			<s:if test="params.storeType==1">
+																				<option value=0>库存统计</option>
+																				<option value=1 selected>入库统计</option>
+																				<option value=2>出库统计</option>
+																			</s:if>
+																			<s:if test="params.storeType==2">
+																				<option value=0>库存统计</option>
+																				<option value=1>入库统计</option>
+																				<option value=2 selected>出库统计</option>
+																			</s:if>
+																		</select>
+																	</td>
+																	<td width="30%">&nbsp;<strong>日期：</strong><input type="text"
 																		name="params.timeStart" id="timeStart"
 																		onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
 																		class="Wdate" style="width:150px"
@@ -121,7 +140,7 @@
 																		class="Wdate" style="width:150px"
 																		value="${params.timeEnd}" />
 																	</td>
-																	<td>&nbsp;规格名称：<input type="text"
+																	<td>&nbsp;<strong>规格名称：</strong><input type="text"
 																		name="params.productName" id="productName"
 																		value="${params.productName}" />
 																	</td>

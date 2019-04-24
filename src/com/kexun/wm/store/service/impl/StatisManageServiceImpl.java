@@ -3,8 +3,9 @@ package com.kexun.wm.store.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jfree.chart.plot.dial.ArcDialFrame;
+import org.apache.commons.lang.xwork.StringUtils;
 
+import com.kexun.wm.sale.bean.Product;
 import com.kexun.wm.store.bean.StandardStatisVo;
 import com.kexun.wm.store.bean.StatisParams;
 import com.kexun.wm.store.bean.StoreStatisVo;
@@ -12,10 +13,8 @@ import com.kexun.wm.store.dao.StatisManageDao;
 import com.kexun.wm.store.dao.impl.StatisManageDaoImpl;
 import com.kexun.wm.store.service.StatisManageService;
 import com.kexun.wm.store.service.StoreService;
-import com.kexun.wm.system.bean.PageSize;
 import com.kexun.wm.system.service.SysUserService;
 import com.kexun.wm.system.service.impl.SysUserServiceImpl;
-import com.kexun.wm.untils.AllSelectItemUtil;
 
 public class StatisManageServiceImpl implements StatisManageService {
 	private StatisManageDao statisManageDao = new StatisManageDaoImpl();
@@ -71,6 +70,10 @@ public class StatisManageServiceImpl implements StatisManageService {
 	}
 	
 public List<StandardStatisVo> queryStoreStatis(StatisParams params, int pageNo, int pageSize) throws Exception{
+		String ids = this.getProductId(params);
+		if(null != params && StringUtils.isNotBlank(ids)){
+			params.setProductIds(ids);
+		}
 		List<StandardStatisVo> standardList = new ArrayList<StandardStatisVo>();
 		List<Object[]> objecyList = statisManageDao.queryStoreStatis(params, pageNo, pageSize);
 		if(null != objecyList && objecyList.size()> 0){
@@ -92,10 +95,18 @@ public List<StandardStatisVo> queryStoreStatis(StatisParams params, int pageNo, 
     }
 	
 	public int queryStoreStatisSize(StatisParams params) throws Exception{
+		String ids = this.getProductId(params);
+		if(null != params && StringUtils.isNotBlank(ids)){
+			params.setProductIds(ids);
+		}
 		return statisManageDao.queryStoreStatisSize(params);
 	}
 	
 	public List<StandardStatisVo> queryAllStoreStatis(StatisParams params) throws Exception{
+		String ids = this.getProductId(params);
+		if(null != params && StringUtils.isNotBlank(ids)){
+			params.setProductIds(ids);
+		}
 		List<StandardStatisVo> standardList = new ArrayList<StandardStatisVo>();
 		List<Object[]> objecyList = statisManageDao.queryAllStoreStatis(params);
 		if(null != objecyList && objecyList.size()> 0){
@@ -114,5 +125,21 @@ public List<StandardStatisVo> queryStoreStatis(StatisParams params, int pageNo, 
 			}
 		}
     	return standardList;
+	}
+	
+	private String getProductId(StatisParams params) throws Exception{
+		String ids = "";
+		if(null != params && StringUtils.isNotBlank(params.getProductName())){
+			List<Product> pList = statisManageDao.queryProductByName(params.getProductName());
+			if(null != pList && pList.size()>0){
+				ids += pList.get(0).getFItemID();
+				for(int i=1; i<pList.size(); i++){
+					ids += (","+pList.get(i).getFItemID());
+				}
+			}else if(null != pList && pList.size()==0){
+				ids = "0";
+			}
+		}
+		return ids;
 	}
 }

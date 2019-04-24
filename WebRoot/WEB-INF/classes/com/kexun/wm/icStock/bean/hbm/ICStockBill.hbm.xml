@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.kexun.wm.icStock.bean">
+
+	<class name="ICStockBill" table="ICStockBill">
+		<!-- 映射主键 -->
+		<id name="FInterID" column="FInterID" type="java.lang.Integer">
+			<generator class="identity" />
+		</id>
+		<!-- 映射基本属性 -->
+		<property name="FBillNo" type="java.lang.String">
+			<column name="FBillNo" length="255"></column>
+		</property>
+	   <property name="FDate" type="java.util.Date">
+			<column name="FDate"></column>
+		</property>
+		 
+		<many-to-one name="k3User"  lazy="false" class="com.kexun.wm.system.bean.K3User">
+			<column name="FEmpID" length="11"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>
+
+
+
+
+
+
+
+
+
+

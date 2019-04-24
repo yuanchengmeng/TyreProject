@@ -3,19 +3,23 @@ package com.kexun.wm.store.dao.impl;
 import java.util.List;
 
 import org.apache.commons.lang.xwork.StringUtils;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.kexun.wm.sale.bean.Product;
+import com.kexun.wm.sale.bean.SeOrder;
 import com.kexun.wm.store.bean.StandardStatisVo;
 import com.kexun.wm.store.bean.StatisParams;
 import com.kexun.wm.store.dao.StatisManageDao;
 import com.kexun.wm.untils.HibernateUtil;
+import com.kexun.wm.untils.HibernateUtilK3;
 
 public class StatisManageDaoImpl implements StatisManageDao {
 	private static SessionFactory sf = HibernateUtil.getSessionFactory();
-
+	private static SessionFactory kf = HibernateUtilK3.getSessionFactory();
 	public List<StandardStatisVo> queryStandardStatis(StatisParams params, int pageNo, int pageSize) throws Exception {
  		List<StandardStatisVo> standardList = null;
 		Session session = null;
@@ -244,10 +248,19 @@ public class StatisManageDaoImpl implements StatisManageDao {
 			if (null != params && StringUtils.isNotBlank(params.getTimeEnd())) {
 				sql += " and t1.InTime <'"+params.getTimeEnd()+"'";
 			}		
-			 
-			sql += " group by t1.ProductID";
-			 
+			if (null != params && StringUtils.isNotBlank(params.getProductIds())) {
+				sql += " and t1.ProductID in ("+params.getProductIds()+")";
+			}	
+			if(null !=params && params.getStoreType() == 0){
+				sql += " and t1.StoreState ='在库'";
+			}else if(null !=params && params.getStoreType() == 1){
+				sql += " and t1.StoreState in ('在库','已出库')";
+			}else if(null !=params && params.getStoreType() == 2){
+				sql += " and t1.StoreState ='已出库'";
+			}
 			
+			sql += " group by t1.ProductID";
+			System.out.println("sql:"+sql);
 			SQLQuery query = session.createSQLQuery(sql);
 			query.setFirstResult(beginPos);
 			query.setMaxResults(pageSize);
@@ -276,9 +289,18 @@ public class StatisManageDaoImpl implements StatisManageDao {
 			if (null != params && StringUtils.isNotBlank(params.getTimeEnd())) {
 				sql += " and t1.InTime <'"+params.getTimeEnd()+"'";
 			}		
-			 
+			if (null != params && StringUtils.isNotBlank(params.getProductIds())) {
+				sql += " and t1.ProductID in ("+params.getProductIds()+")";
+			}	
+			if(null !=params && params.getStoreType() == 0){
+				sql += " and t1.StoreState ='在库'";
+			}else if(null !=params && params.getStoreType() == 1){
+				sql += " and t1.StoreState in ('在库','已出库')";
+			}else if(null !=params && params.getStoreType() == 2){
+				sql += " and t1.StoreState ='已出库'";
+			}
 			sql += " group by t1.ProductID) a";
-			
+			System.out.println("sql:"+sql);
 			SQLQuery query = session.createSQLQuery(sql);
 			n = ((Number) query.uniqueResult()).intValue();
 		} catch (Exception e) {
@@ -305,9 +327,18 @@ public class StatisManageDaoImpl implements StatisManageDao {
 			if (null != params && StringUtils.isNotBlank(params.getTimeEnd())) {
 				sql += " and t1.InTime <'"+params.getTimeEnd()+"'";
 			}		
-			 
+			if (null != params && StringUtils.isNotBlank(params.getProductIds())) {
+				sql += " and t1.ProductID in ("+params.getProductIds()+")";
+			}		
+			if(null !=params && params.getStoreType() == 0){
+				sql += " and t1.StoreState ='在库'";
+			}else if(null !=params && params.getStoreType() == 1){
+				sql += " and t1.StoreState in ('在库','已出库')";
+			}else if(null !=params && params.getStoreType() == 2){
+				sql += " and t1.StoreState ='已出库'";
+			}
 			sql += "group by t1.ProductID";
-			
+			System.out.println("sql:"+sql);
 			SQLQuery query = session.createSQLQuery(sql);
 			standardList=query.list();
 		} catch (Exception e) {
@@ -318,5 +349,30 @@ public class StatisManageDaoImpl implements StatisManageDao {
 				session.close();
 		}
 		return standardList;
+	}
+	
+	/**
+	 * 通过名称查询规格
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Product> queryProductByName(String productName) throws Exception{
+		Session session = null;
+		List<Product> productList = null;
+		try {
+			session = kf.openSession();
+			String hql = "from Product where FName like '%"+productName+"%'";
+			Query q = session.createQuery(hql);
+			productList = q.list();
+		} catch (HibernateException hi) {
+			hi.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.clear();
+				session.close();
+			}
+		}
+		return productList;
 	}
 }
