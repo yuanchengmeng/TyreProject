@@ -3,10 +3,13 @@
 <struts>
 	<package name="k3" namespace="/k3" extends="struts-default">
 		
-		<!-- 手持用户的后台数据操作 -->
 		<action name="queryOutStock" class="com.kexun.wm.icStock.action.ICStockBillAction"
 			method="queryOutStock">
 			<result name="queryOutStock">/jsp/k3/queryOutStock.jsp</result>
+		</action>
+		<action name="getDetail" class="com.kexun.wm.icStock.action.ICStockBillAction"
+			method="getDetail">
+			<result name="getDetail">/jsp/k3/stockDetail.jsp</result>
 		</action>
 	</package>
 </struts>

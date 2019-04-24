@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.kexun.wm.icStock.bean">
+
+	<class name="ICStockBillEntry" table="ICStockBillEntry">
+		<!-- 映射主键 -->
+		<composite-id>
+            <key-property name="FInterID" type="java.lang.Integer" column="FInterID"></key-property>
+            <key-property name="FEntryID" type="java.lang.Integer" column="FEntryID"></key-property>
+        </composite-id> 
+		<!-- 映射基本属性 -->
+		<property name="FQty" type="java.lang.Double">
+			<column name="FQty"></column>
+		</property>
+	    
+		<many-to-one name="product"  lazy="false" class="com.kexun.wm.sale.bean.Product">
+			<column name="FItemID" length="11"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>
+
+
+
+
+
+
+
+
+
+

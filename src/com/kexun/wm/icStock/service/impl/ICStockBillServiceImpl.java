@@ -3,6 +3,7 @@ package com.kexun.wm.icStock.service.impl;
 import java.util.List;
 
 import com.kexun.wm.icStock.bean.ICStockBill;
+import com.kexun.wm.icStock.bean.ICStockBillEntry;
 import com.kexun.wm.icStock.dao.ICStockBillDao;
 import com.kexun.wm.icStock.dao.impl.ICStockBillDaoImpl;
 import com.kexun.wm.icStock.service.ICStockBillService;
@@ -32,11 +33,11 @@ public class ICStockBillServiceImpl implements ICStockBillService {
 		PageBean pageBean = new PageBean();
 		int pageCount = 0;
 		List<PageSize> pageSizeList = AllSelectItemUtil.queryPageSize();
-		int rows = dao.getOutStockRows(vo);
 		if (pageNo == 0) {
 			pageNo = 1;
 			pageSize = pageSizeList.get(1).getPsize();
 		}
+		int rows = dao.getOutStockRows(vo);
 		pageCount = (rows + pageSize - 1) / pageSize;
 		
 		pageBean.setAllRow(rows);
@@ -45,6 +46,10 @@ public class ICStockBillServiceImpl implements ICStockBillService {
 		pageBean.setCurrentPage(pageNo);
 		pageBean.setTotalPage(pageCount);
 		return pageBean;
+	}
+
+	public List<ICStockBillEntry> getDetail(ICStockBill vo) throws Exception {
+		return dao.getDetail(vo.getFInterID());
 	}
 	 
 }

@@ -10,9 +10,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.kexun.wm.icStock.bean.ICStockBill;
+import com.kexun.wm.icStock.bean.ICStockBillEntry;
 import com.kexun.wm.icStock.dao.ICStockBillDao;
-import com.kexun.wm.system.bean.LoginLog;
-import com.kexun.wm.untils.HibernateUtil;
 import com.kexun.wm.untils.HibernateUtilK3;
 
 /** 
@@ -29,7 +28,8 @@ public class ICStockBillDaoImpl implements ICStockBillDao {
 		List<ICStockBill> list = new ArrayList<ICStockBill>();
 		try{
 			session = sfk3.openSession();
-			String hql = "from ICStockBill where FTranType=2";
+//			String hql = "from ICStockBill where FTranType=2";
+			String hql = "from ICStockBill where FTranType=21";
  			if(vo!=null && vo.getFBillNo()!=null){
 				hql=hql+" and FBillNo like '%"+vo.getFBillNo()+"%'";
 			}
@@ -51,7 +51,8 @@ public class ICStockBillDaoImpl implements ICStockBillDao {
 		int rows = 0;
 		try{
 			session = sfk3.openSession();
-			String hql = "select count(*)  from ICStockBill where FTranType=2";
+//			String hql = "select count(*)  from ICStockBill where FTranType=2";
+			String hql = "select count(*)  from ICStockBill where FTranType=21";
 			if(vo!=null && vo.getFBillNo()!=null){
 				hql=hql+" and FBillNo like '%"+vo.getFBillNo()+"%'";
 			}
@@ -64,6 +65,23 @@ public class ICStockBillDaoImpl implements ICStockBillDao {
 				session.close();
 		}
 		return rows;
+	}
+
+	public List<ICStockBillEntry> getDetail(int FInterID) throws Exception {
+		Session session = null;
+		List<ICStockBillEntry> list = new ArrayList<ICStockBillEntry>();
+		try{
+			session = sfk3.openSession();
+			String hql = "from ICStockBillEntry where FInterID="+FInterID;
+			Query query = session.createQuery(hql);
+			list = query.list();
+		}catch (HibernateException hi) {
+			hi.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return list;
 	}
 
 }

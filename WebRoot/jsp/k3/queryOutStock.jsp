@@ -46,6 +46,9 @@
 		}
 	}
  
+ 	function detailPage(id) {
+	  	location.href = "/TyreProject/k3/getDetail?vo.FInterID="+(Number(id));
+	}
 </script>
 
 </head>
@@ -104,10 +107,12 @@
 																	<s:iterator value="outStockList" var="outStock" status="status">
 																		<tr class="even">
 																			<td style="text-align: center;"><s:property
-																					value="#status.index+1+(pageNo-1)*pageSize" />
+																					value="#status.index+1" />
 																			</td>
-																			<td><s:property
-																					value="#outStock.getFBillNo()" />
+																			<td>
+																			<a href="javascript:void(0)"
+																				onclick="detailPage(<s:property value='#outStock.getFInterID()' />);">
+																					<s:property value="#outStock.getFBillNo()" /> </a>
 																			</td>
 																			<td><s:property
 																					value="#outStock.getFDate()" />
